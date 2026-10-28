@@ -1,3 +1,43 @@
+/*
+PROJECT: Procurement Analytics — Portfolio Project 01
+ANALYSIS: Supplier Performance & Fulfillment
+
+BUSINESS QUESTIONS:
+1. How many units were ordered from each supplier?
+2. How many units has each supplier delivered?
+3. How many units remain outstanding?
+4. What percentage of ordered units has each supplier fulfilled?
+
+BUSINESS PURPOSE:
+Evaluate supplier fulfillment performance,
+identify outstanding quantities, and support
+supplier follow-up and prioritization.
+
+DATA SOURCES:
+- PurchaseOrders
+- Deliveries
+
+KEY METRICS:
+- Total Ordered Quantity
+- Total Delivered Quantity
+- Total Remaining Quantity
+- Fulfillment Percentage
+
+METHOD:
+Use a CTE to aggregate deliveries at the
+purchase order level before calculating
+supplier totals. This prevents double-counting
+orders with multiple deliveries.
+
+Fulfillment Percentage =
+(Total Delivered Quantity / Total Ordered Quantity) * 100
+
+NOTE:
+Fulfillment percentage measures the share of
+ordered units delivered. It does not measure
+on-time delivery performance.
+*/
+
 WITH Supplier_Delivery AS 
 (
 	SELECT			p.PO_ID,
