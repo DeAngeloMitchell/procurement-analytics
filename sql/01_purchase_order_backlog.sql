@@ -25,7 +25,9 @@ including those without deliveries. Aggregate
 partial deliveries by PO_ID and calculate
 the remaining quantity.
 
-*/SELECT      p.PO_ID,
+*/
+
+SELECT      p.PO_ID,
             p.Supplier,
             p.Order_Qty,
             COALESCE(SUM(d.Delivered_Qty), 0) AS Total_Delivered_Qty,
