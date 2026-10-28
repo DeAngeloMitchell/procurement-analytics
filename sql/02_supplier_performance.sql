@@ -15,6 +15,13 @@ WITH Supplier_Delivery AS
 SELECT		Supplier,
 			SUM(Order_Qty) AS Total_Ordered_Qty,
 			SUM(Total_Delivered_Qty) AS Total_Delivered_Qty,
-			SUM(Remaining_Qty) AS Total_Remaining_Qty
+			SUM(Remaining_Qty) AS Total_Remaining_Qty,
+			CAST(
+				ROUND(
+				  SUM(Total_Delivered_Qty) * 100.0 
+				  / NULLIF(SUM(Order_Qty),0), 
+				  2
+				 ) AS DECIMAL(10,2)
+			) AS Fulfitment_Pct
 FROM		Supplier_Delivery
 GROUP BY	Supplier
